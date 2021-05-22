@@ -69,7 +69,7 @@ static struct file_operations proc_fops = {
 */
 static int open_proc(struct inode *inode, struct file *file)
 {
-    pr_info("proc file opend.....\t");
+    pr_info("Process File Opened....\t");
     return 0;
 }
 
@@ -102,7 +102,7 @@ static ssize_t read_proc(struct file *filp, char __user *buffer, size_t length,l
     {
         pr_err("Data Send : Err!\n");
     }
- 
+    printk("The File read returned the string:%.*s", length, buffer);
     return length;;
 }
 
@@ -111,13 +111,14 @@ static ssize_t read_proc(struct file *filp, char __user *buffer, size_t length,l
 */
 static ssize_t write_proc(struct file *filp, const char *buff, size_t len, loff_t * off)
 {
-    pr_info("proc file wrote.....\n");
+    pr_info("Process File Writing Initiation.....\n");
     
     if( copy_from_user(etx_array,buff,len) )
     {
         pr_err("Data Write : Err!\n");
     }
-    
+    printk("The File was written with the string:%.*s", len, buff);
+
     return len;
 }
 
