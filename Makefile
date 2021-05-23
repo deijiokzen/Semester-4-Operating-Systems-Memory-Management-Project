@@ -7,7 +7,7 @@ PWD := $(shell pwd)
 # obj-m += pa2.o
 
 # obj-m += InputList.o
-obj-m += list.o
+obj-m += Project.o
 all:
 		make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 clean:
